@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <!-- href中指定 / 表示请求当前域名+该路径 例如当前页面域名是 http://127.0.0.1:3000 那么 浏览器在发送请求的时候会自动加上域名部分 http://127.0.0.1:3000/ -->
+      <h1><a href="/">我的音乐</a> <small>{{ title }}</small></h1>
+    </div>
+    <a class="btn btn-success" href="/add">添加歌曲</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>标题</th>
+          <th>歌手</th>
+          <th>音乐名称</th>
+          <th>海报</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ each musicList }}
+          <tr>
+            <td>{{ $value.id }}</td>
+            <td>{{ $value.title }}</td>
+            <td>{{ $value.singer }}</td>
+            <td>{{ $value.music }}</td>
+            <td>
+              <img src="/uploads/{{ $value.poster }}" alt="">
+            </td>
+            <td>
+              <a href="/edit?id={{ $value.id }}">修改</a>
+              <a href="/remove?id={{ $value.id }}">删除</a>
+            </td>
+          </tr>
+        {{ /each }}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
